@@ -13,6 +13,7 @@ g = Github(tkn)
 
 def search_osint_files(file_type='yara'):
 	if file_type == 'yara':
+
 		query = f'in:file language:'+file_type
 	elif file_type == 'sigma':
 		query = f'title AND logsource AND detection AND condition in:file extension:yml'
@@ -38,11 +39,11 @@ def search_osint_files(file_type='yara'):
 							r = requests.get(file.download_url)
 							open(file_type + '/highly_ranked/' + filename, "w").write(r.text)
 					elif file.repository.stargazers_count > 10 and file.repository.stargazers_count <= 50:
-						if filename not in os.listdir(file_type + '/repos/'):
+						if filename not in os.listdir(file_type + '/ranked/'):
 							r = requests.get(file.download_url)
-							open(file_type + '/repos/' + filename, "w").write(r.text)
+							open(file_type + '/ranked/' + filename, "w").write(r.text)
 					elif file.repository.stargazers_count <= 10:
-						if filename not in os.listdir('yara/other/'):
+						if filename not in os.listdir(file_type +'/other/'):
 							r = requests.get(file.download_url)
 							open(file_type + '/other/' + filename, "w").write(r.text)
 			except:
