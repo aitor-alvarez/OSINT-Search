@@ -11,12 +11,18 @@ tkn = creds.GITHUB_API
 g = Github(tkn)
 
 
-def search_osint_files(file_type='yara', code=None):
+def search_osint_files(file_type=None, code=None):
 	if file_type == 'yara':
-		query = f'in:file language:'+file_type
+		if code is None:
+			query = f'in:file language:'+file_type
+		else:
+			query = f'{code} in:file language:' + file_type
 	elif file_type == 'sigma':
-		query = f'title AND logsource AND detection AND condition in:file extension:yml'
-	elif code is not None:
+		if code is None:
+			query = f'title AND logsource AND detection AND condition AND {code} in:file extension:yml'
+		else:
+			query = f'title AND logsource AND detection AND condition in:file extension:yml'
+	elif code is not None and file_type is None:
 		query = f'{code} in:file language:'
 	rate_limit = g.get_rate_limit()
 	rate = rate_limit.search
