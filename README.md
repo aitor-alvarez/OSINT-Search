@@ -9,6 +9,8 @@ OSINT scripts to mine and retrieve Yara and Sigma rules from Github repositories
  
  pip install -r requirements.txt
  
+ Add GITHUB_API key in creds.py file
+ 
  ```
  
  After installation, the directory downloads/ will be created where the rules will be stored.
