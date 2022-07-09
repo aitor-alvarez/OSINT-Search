@@ -19,9 +19,9 @@ def search_osint_files(file_type=None, code=None):
 			query = f'{code} in:file language:' + file_type
 	elif file_type == 'sigma':
 		if code is None:
-			query = f'title AND logsource AND detection AND condition in:file extension:yml'
+			query = f'logsource AND detection AND condition in:file extension:yml'
 		else:
-			query = f'title AND logsource AND detection AND condition AND {code} in:file extension:yml'
+			query = f'logsource AND detection AND condition AND {code} in:file extension:yml'
 	elif code is not None and file_type =='any':
 		query = f'{code} in:file language:'
 	rate_limit = g.get_rate_limit()

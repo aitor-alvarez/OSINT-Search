@@ -2,3 +2,4 @@
 venv/
 *.pyc
 creds/creds.py
+downloads/
