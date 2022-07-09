@@ -1,7 +1,7 @@
 import requests
 from github import Github
 import os
-from creds import creds
+import creds
 import time
 
 #Find yara or sigma files in github directories and download the files according to their star counts or other predefined criteria.
