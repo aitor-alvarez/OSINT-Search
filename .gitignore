@@ -1,6 +1,6 @@
 .idea/
 venv/
 *.pyc
-creds/creds.py
+creds.py
 downloads/
 *.DS_Store
