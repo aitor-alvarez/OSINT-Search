@@ -3,3 +3,4 @@ venv/
 *.pyc
 creds/creds.py
 downloads/
+*.DS_Store
