@@ -2,11 +2,11 @@ import argparse
 from osint import search_osint_files
 import os
 
-if __name__ == 'main':
+if __name__ == '__main__':
 	if not os.path.isdir('downloads'):
 		base_yara = 'downloads/yara/'
 		base_sigma = 'downloads/sigma/'
-		base_code = 'downloads/any'
+		base_code = 'downloads/any/'
 		os.makedirs(base_sigma+'highly_ranked')
 		os.mkdir(base_sigma+'ranked')
 		os.mkdir(base_sigma + 'other')

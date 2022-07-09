@@ -19,9 +19,9 @@ def search_osint_files(file_type=None, code=None):
 			query = f'{code} in:file language:' + file_type
 	elif file_type == 'sigma':
 		if code is None:
-			query = f'title AND logsource AND detection AND condition AND {code} in:file extension:yml'
-		else:
 			query = f'title AND logsource AND detection AND condition in:file extension:yml'
+		else:
+			query = f'title AND logsource AND detection AND condition AND {code} in:file extension:yml'
 	elif code is not None and file_type =='any':
 		query = f'{code} in:file language:'
 	rate_limit = g.get_rate_limit()
@@ -42,17 +42,17 @@ def search_osint_files(file_type=None, code=None):
 				if file.size < 1048576:
 					filename = file.path.split('/')[-1]
 					if file.repository.stargazers_count > 50:
-						if filename not in os.listdir(file_type + '/highly_ranked/'):
+						if filename not in os.listdir('downloads/'+file_type + '/highly_ranked/'):
 							r = requests.get(file.download_url)
-							open(file_type + '/highly_ranked/' + filename, "w").write(r.text)
+							open('downloads/'+file_type + '/highly_ranked/' + filename, "w").write(r.text)
 					elif file.repository.stargazers_count > 10 and file.repository.stargazers_count <= 50:
-						if filename not in os.listdir(file_type + '/ranked/'):
+						if filename not in os.listdir('downloads/'+file_type + '/ranked/'):
 							r = requests.get(file.download_url)
-							open(file_type + '/ranked/' + filename, "w").write(r.text)
+							open('downloads/'+file_type + '/ranked/' + filename, "w").write(r.text)
 					elif file.repository.stargazers_count <= 10:
-						if filename not in os.listdir(file_type +'/other/'):
+						if filename not in os.listdir('downloads/'+file_type +'/other/'):
 							r = requests.get(file.download_url)
-							open(file_type + '/other/' + filename, "w").write(r.text)
+							open('downloads/'+file_type + '/other/' + filename, "w").write(r.text)
 			except:
 				continue
 		# Github API has a limit of 30 requests per minute
