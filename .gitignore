@@ -4,3 +4,5 @@ venv/
 creds.py
 downloads/
 *.DS_Store
+data.txt
+__pycache__/

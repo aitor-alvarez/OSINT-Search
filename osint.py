@@ -12,6 +12,7 @@ g = Github(tkn)
 
 
 def search_osint_files(file_type=None, code=None):
+	data_file = 'data.txt'
 	if file_type == 'yara':
 		if code is None:
 			query = f'in:file language:'+file_type
@@ -44,14 +45,20 @@ def search_osint_files(file_type=None, code=None):
 					if file.repository.stargazers_count > 50:
 						if filename not in os.listdir('downloads/'+file_type + '/highly_ranked/'):
 							r = requests.get(file.download_url)
+							data={'url': file.download_url, 'path':'downloads/'+file_type + '/highly_ranked/' + filename}
+							open(data_file, 'a').write(str(data)+'\n')
 							open('downloads/'+file_type + '/highly_ranked/' + filename, "w").write(r.text)
 					elif file.repository.stargazers_count > 10 and file.repository.stargazers_count <= 50:
 						if filename not in os.listdir('downloads/'+file_type + '/ranked/'):
 							r = requests.get(file.download_url)
+							data = {'url': file.download_url, 'path': 'downloads/' + file_type + '/ranked/' + filename}
+							open(data_file, 'a').write(str(data) + '\n')
 							open('downloads/'+file_type + '/ranked/' + filename, "w").write(r.text)
 					elif file.repository.stargazers_count <= 10:
 						if filename not in os.listdir('downloads/'+file_type +'/other/'):
 							r = requests.get(file.download_url)
+							data = {'url': file.download_url, 'path': 'downloads/' + file_type + '/other/' + filename}
+							open(data_file, 'a').write(str(data) + '\n')
 							open('downloads/'+file_type + '/other/' + filename, "w").write(r.text)
 			except:
 				continue
