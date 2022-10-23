@@ -31,7 +31,7 @@ python main.py -f "yara"
 python main.py -f "sigma" -c ".exe"
 ```
 
-Similarly, any file can be retrieved that contains a particular string in the following way:
+Similarly, any file  that contains a particular string can be retrieved in the following way:
 
 ```
 python main.py -f "any" -c "function search_api()"
