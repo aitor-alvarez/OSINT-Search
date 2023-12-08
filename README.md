@@ -5,7 +5,7 @@ OSINT scripts to mine and retrieve Yara and Sigma rules from Github repositories
 ## Installation
 
 ```
- git clone https://github.com/aitor-arronte/OSINT-Search
+ git clone https://github.com/aitor-alvarez/OSINT-Search
  
  pip install -r requirements.txt
  
